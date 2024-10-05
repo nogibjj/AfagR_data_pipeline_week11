@@ -22,7 +22,7 @@ https://raw.githubusercontent.com/acgowda/cfb-recruit-net/525eea9f7a803080e57cee
 
 ### Data Extraction
 
-![4 17-etl-sqlite-RAW](img.png)
+![4 17-etl-sqlite-R](img.png)
 Above is the table format and data in it. 
 •	Load CSV data into SQLite database.
 •	Create and manage a SQLite database.
