@@ -24,13 +24,8 @@ https://raw.githubusercontent.com/acgowda/cfb-recruit-net/525eea9f7a803080e57cee
 
 ![4 17-etl-sqlite-RAW](img.png)
 Above is the table format and data in it. 
-
-
-### Heading here
-
-
-### Heading here
-
+•	Load CSV data into SQLite database.
+•	Create and manage a SQLite database.
 
 
 ### CRUD Operations
