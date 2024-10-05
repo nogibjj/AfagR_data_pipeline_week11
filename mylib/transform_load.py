@@ -1,9 +1,3 @@
-"""
-Transforms and Loads data into the local SQLite3 database
-Example:
-,general name,count_products,ingred_FPro,avg_FPro_products,avg_distance_root,ingred_normalization_term,semantic_tree_name,semantic_tree_node
-"""
-
 import sqlite3
 import csv
 import os
@@ -21,11 +15,15 @@ def load(dataset="data/usc_offers.csv"):
     c = conn.cursor()
     c.execute("DROP TABLE IF EXISTS cfb_playersDB")
     c.execute(
-        "CREATE TABLE cfb_playersDB (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT, school TEXT,city TEXT,state TEXT, ranking INTEGER)"
+        """
+        CREATE TABLE cfb_playersDB 
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT, 
+        school TEXT,city TEXT,state TEXT, ranking INTEGER) """
     )
     # insert
     c.executemany(
-        "INSERT INTO cfb_playersDB (name, school, city, state, ranking) VALUES (?, ?, ?, ?, ?)",
+        """INSERT INTO cfb_playersDB 
+        (name, school, city, state, ranking) VALUES (?, ?, ?, ?, ?)""",
         payload,
     )
     conn.commit()
