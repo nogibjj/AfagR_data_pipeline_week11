@@ -32,6 +32,8 @@ Above is the table format and data in it.
 ### CRUD Operations
 read , update, delete from the created table
 
+![4 17-etl-sqlite-R](image2.png)
+
 
 ### Test all the steps
 ![4 17-etl-sqlite-RAW](image.png)
