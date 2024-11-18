@@ -1,34 +1,51 @@
 [![CI](https://github.com/nogibjj/AfagR_PySpark_week10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/AfagR_PySpark_week10/actions/workflows/cicd.yml)
 
-## Mini Project 10 
+##  Data Pipeline using Databricks
 
-The repository involves utilizing PySpark for data processing on a dataset. The main objectives are to incorporate a Spark SQL query and execute a data transformation.
+## Key Features
+
+1. **Data Extraction**
+   - Utilizes the `requests` library to fetch datasets from specified URLs.
+   - Stores the extracted data in the Databricks FileStore for further processing.
+
+2. **Databricks Environment Setup**
+   - Establishes a connection to the Databricks environment using environment variables for authentication (`SERVER_HOSTNAME` and `ACCESS_TOKEN`).
+   - Configures Databricks clusters to support PySpark workflows.
+
+3. **Data Transformation and Load**
+   - Converts CSV files into Spark DataFrames for processing.
+   - Transforms and stores the processed data as Delta Lake Tables in the Databricks environment.
+
+4. **Query Transformation and Visualization**
+   - Performs predefined Spark SQL queries to transform the data.
+   - Creates visualizations from the transformed Spark DataFrames to analyze various metrics.
+
+5. **File Path Validation**
+   - Implements a function to check if specified file paths exist in the Databricks FileStore.
+   - Verifies connectivity with the Databricks API for automated workflows.
+
+6. **Automated Job Trigger via GitHub Push**
+   - Configures a GitHub workflow to trigger a job run in the Databricks workspace whenever new commits are pushed to the repository.
+   
+## Project Components
+
+### Environment Setup
+- Create a Databricks workspace on Azure.
+- Connect your GitHub account to the Databricks workspace.
+- Set up a global init script for cluster start to store environment variables.
+- Create a Databricks cluster that supports PySpark operations.
+### Job Run results:
+![Pipeline](img/ETL.png)
+
+## Preparation Steps
+
+1. Set up a Databricks workspace and cluster on Azure.
+2. Clone this repository into your Databricks workspace.
+3. Configure environment variables (`SERVER_HOSTNAME` and `ACCESS_TOKEN`) for API access.
+4. Create a Databricks job to build and run the pipeline:
+   - **Extract Task:** `mylib/extract.py`
+   - **Transform and Load Task:** `mylib/transform_load.py`
+   - **Query and Visualization Task:** `mylib/query.py`
 
 
-
-## Requirements
-* Use PySpark to perform data processing on a large dataset.</br>
-* Include at least one Spark SQL query and one data transformation.</br>
-
-#### If you don't have pyspark installed you can follow below steps to use the repo succesfully and work with pyspark
-
-- open codespaces
-- wait for environment to be installed
-- run: python main.py
-
-## Data
-- I have used football players and their ranking data you can find the dataset here : 
-- [cfb_players.csv](https://raw.githubusercontent.com/acgowda/cfb-recruit-net/525eea9f7a803080e57cee3e8b0cc0dd319ce0d3/data/2020/usc_offers.csv)
-
-## Process 
-
-- Extract the dataset via extract
-- Start a spark session via start_spark
-- Load the dataset via load_data
-- Find some descriptive statistics via descibe
-- Query the dataset via query
-- Transformation on the sample dataset via example_transform
-- End spark session via end_spark
-
-#### You can find results of the process in *pyspark_output.md* file
 
