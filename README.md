@@ -40,7 +40,7 @@
 ![Pipeline](results/pipeline.png)
 
 ### Successful job runs
-![Pipeline](results/runs.png)
+![Pipeline](results/runsss.png)
 
 ## Preparation Steps
 
