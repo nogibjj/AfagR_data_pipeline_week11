@@ -18,7 +18,7 @@ if not SERVER_HOSTNAME or not ACCESS_TOKEN:
     raise ValueError("SERVER_HOSTNAME and ACCESS_TOKEN must be set in the .env file.")
 
 
-def check_filestore_path(path: str, headers: dict) -> bool:
+def test_check_filestore_path(path: str, headers: dict) -> bool:
     """
     Check if a file path exists in Databricks DBFS and validate authentication.
 
@@ -48,7 +48,7 @@ def test_databricks():
     Test if the Databricks file store path exists and is accessible.
     """
     headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
-    path_exists = check_filestore_path(FILESTORE_PATH, headers)
+    path_exists = test_check_filestore_path(FILESTORE_PATH, headers)
     assert (
         path_exists
     ), f"File path '{FILESTORE_PATH}' does not exist or authentication failed."
@@ -56,6 +56,5 @@ def test_databricks():
         f"Test successful: The file path '{FILESTORE_PATH}' exists and is accessible."
     )
 
-
-if __name__ == "__main__":
-    test_databricks()
+# if __name__ == "__main__":
+#     test_databricks()

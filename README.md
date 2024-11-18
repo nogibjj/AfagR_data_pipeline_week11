@@ -1,4 +1,6 @@
-[![CI](https://github.com/nogibjj/AfagR_PySpark_week10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/AfagR_PySpark_week10/actions/workflows/cicd.yml)
+
+[![CI](https://github.com/nogibjj/AfagR_data_pipeline_week11/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/AfagR_data_pipeline_week11/actions/workflows/cicd.yml)
+
 
 ##  Data Pipeline using Databricks
 
@@ -48,4 +50,16 @@
    - **Query and Visualization Task:** `mylib/query.py`
 
 
+## Project Components
 
+### Environment Setup
+- Create a Databricks workspace on Azure.
+- Connect your GitHub account to the Databricks workspace.
+- Set up a global init script for cluster start to store environment variables.
+- Create a Databricks cluster that supports PySpark operations.
+
+### Job Run from Automated Trigger:
+![Pipeline](results/pipeline.png)
+
+### Successful job runs
+![Pipeline](results/runs.png)
