@@ -1,51 +1,61 @@
 """
-Test goes here
-
+Test Databricks Functionality
 """
 
+import requests
+from dotenv import load_dotenv
 import os
-import pytest
-from mylib.lib import (
-    extract,
-    load_data,
-    describe,
-    query,
-    example_transform,
-    start_spark,
-    end_spark,
-)
+
+# Load environment variables
+load_dotenv()
+SERVER_HOSTNAME = os.getenv("SERVER_HOSTNAME")
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+FILESTORE_PATH = "dbfs:/tmp/usc_offers.csv"  # Update this path as per your setup
+BASE_URL = f"https://{SERVER_HOSTNAME}/api/2.0"
+
+# Validate environment variables
+if not SERVER_HOSTNAME or not ACCESS_TOKEN:
+    raise ValueError("SERVER_HOSTNAME and ACCESS_TOKEN must be set in the .env file.")
 
 
-@pytest.fixture(scope="module")
-def spark():
-    spark = start_spark("TestApp")
-    yield spark
-    end_spark(spark)
+def check_filestore_path(path: str, headers: dict) -> bool:
+    """
+    Check if a file path exists in Databricks DBFS and validate authentication.
+
+    Args:
+        path (str): The file path to check.
+        headers (dict): Headers including the authorization token.
+
+    Returns:
+        bool: True if the file path exists and authentication is valid, False otherwise.
+    """
+    try:
+        response = requests.get(
+            f"{BASE_URL}/dbfs/get-status", headers=headers, params={"path": path}
+        )
+        response.raise_for_status()
+        # Check if the response contains a valid file path
+        return "path" in response.json()
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except requests.exceptions.RequestException as req_err:
+        print(f"Request error occurred: {req_err}")
+    return False
 
 
-def test_extract():
-    file_path = extract()
-    assert os.path.exists(file_path) is True
+def test_databricks():
+    """
+    Test if the Databricks file store path exists and is accessible.
+    """
+    headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
+    path_exists = check_filestore_path(FILESTORE_PATH, headers)
+    assert (
+        path_exists
+    ), f"File path '{FILESTORE_PATH}' does not exist or authentication failed."
+    print(
+        f"Test successful: The file path '{FILESTORE_PATH}' exists and is accessible."
+    )
 
 
-def test_load_data(spark):
-    df = load_data(spark)
-    assert df is not None
-
-
-def test_describe(spark):
-    df = load_data(spark)
-    result = describe(df)
-    assert result is None
-
-
-def test_query(spark):
-    df = load_data(spark)
-    result = query(spark, df, "SELECT * FROM Players WHERE STATE = 'CA'", "Players")
-    assert result is None
-
-
-def test_example_transform(spark):
-    df = load_data(spark)
-    result = example_transform(df)
-    assert result is None
+if __name__ == "__main__":
+    test_databricks()
