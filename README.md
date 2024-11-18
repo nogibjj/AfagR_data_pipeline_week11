@@ -37,7 +37,10 @@
 - Set up a global init script for cluster start to store environment variables.
 - Create a Databricks cluster that supports PySpark operations.
 ### Job Run results:
-![Pipeline](img/ETL.png)
+![Pipeline](results/pipeline.png)
+
+### Successful job runs
+![Pipeline](results/runs.png)
 
 ## Preparation Steps
 
@@ -58,8 +61,4 @@
 - Set up a global init script for cluster start to store environment variables.
 - Create a Databricks cluster that supports PySpark operations.
 
-### Job Run from Automated Trigger:
-![Pipeline](results/pipeline.png)
 
-### Successful job runs
-![Pipeline](results/runs.png)
