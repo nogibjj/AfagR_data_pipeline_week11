@@ -3,9 +3,8 @@ install:
 		pip install -r requirements.txt
 
 test:
-	##python -m pytest -vv --cov=main --cov=mylib test_*.py
+	python -m pytest -vv --cov=main --cov=mylib test_*.py
 
-	cd /tmp && python -m pytest -vv --cov=main --cov=mylib /Workspace/Users/afag.ramazanova@duke.edu/AfagR_data_pipeline_week11/test_*.py
 format:
 	black *.py mylib/*.py
 
